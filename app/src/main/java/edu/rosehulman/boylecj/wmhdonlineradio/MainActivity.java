@@ -42,15 +42,21 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
         Uri myUri = Uri.parse("http://icecast.wmhdradio.org:8000/wmhd"); // initialize Uri here
-        MediaPlayer mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.start();
+            }
+        });
+
         try {
-            mediaPlayer.setDataSource(getApplicationContext(), myUri);
-            mediaPlayer.prepare();
+            mMediaPlayer.setDataSource(getApplicationContext(), myUri);
+            mMediaPlayer.prepareAsync();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mediaPlayer.start();
     }
 
     @Override
