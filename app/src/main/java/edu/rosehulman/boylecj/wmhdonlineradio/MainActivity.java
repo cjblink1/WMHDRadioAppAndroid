@@ -2,10 +2,8 @@ package edu.rosehulman.boylecj.wmhdonlineradio;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -38,17 +36,21 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Uri myUri = Uri.parse("http://icecast.wmhdradio.org:8000/wmhd"); // initialize Uri here
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
-            mMediaPlayer.setDataSource("http://icecast.wmhdradio.org:8000/wmhd");
-            mMediaPlayer.prepare();
-            mMediaPlayer.start();
+            mediaPlayer.setDataSource(getApplicationContext(), myUri);
+            mediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
+        mediaPlayer.start();
     }
 
     @Override
