@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +15,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.transition.Slide;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,14 +48,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         mNowPlayingBar = (Toolbar) findViewById(R.id.now_playing_bar);
-        mNowPlayingBar.setOnTouchListener(new View.OnTouchListener() {
+        mNowPlayingBar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, new NowPlayingFragment());
-                ft.addToBackStack("nowplaying");
-                ft.commit();
-                return true;
+            public void onClick(View view) {
+                launchNowPlaying();
             }
         });
 
@@ -123,10 +122,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, new HomeFragment());
-            ft.addToBackStack("home");
-            ft.commit();
+            launchHome();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -147,5 +143,31 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
         //TODO: bind to media player play/pause
+    }
+
+    public void launchNowPlaying() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment fragment = new NowPlayingFragment();
+
+        Slide slideTransition = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            slideTransition = new Slide(Gravity.BOTTOM);
+            slideTransition.setDuration(200);
+            fragment.setEnterTransition(slideTransition);
+        } else {
+            Log.d("WMHD", "Lacking minimum slide API");
+        }
+
+        ft.replace(R.id.fragment_container, fragment);
+        ft.addToBackStack("nowplaying");
+        ft.commit();
+        Log.d("WMHD", "launched fragment");
+    }
+
+    public void launchHome() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, new HomeFragment());
+        ft.addToBackStack("home");
+        ft.commit();
     }
 }
