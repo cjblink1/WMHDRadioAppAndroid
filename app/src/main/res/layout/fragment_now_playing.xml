@@ -6,16 +6,6 @@
     android:background="@color/colorBackground"
     tools:context="edu.rosehulman.boylecj.wmhdonlineradio.NowPlayingFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@android:drawable/ic_menu_report_image"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:layout_above="@id/show_info"
-        android:id="@+id/show_logo" />
-
     <TextView
         android:text="TextView"
         android:textSize="18sp"
@@ -26,6 +16,16 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:id="@+id/show_info" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@android:drawable/ic_menu_report_image"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:layout_above="@id/show_info"
+        android:id="@+id/show_logo" />
 
     <ImageButton
         android:layout_width="wrap_content"
