@@ -6,26 +6,32 @@
     android:background="@color/colorBackground"
     tools:context="edu.rosehulman.boylecj.wmhdonlineradio.NowPlayingFragment">
 
+    <include layout="@layout/toolbar_main"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_gravity="top"
+        android:id="@+id/now_playing_bar"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:srcCompat="@android:drawable/ic_menu_report_image"
+        android:id="@+id/show_logo"
+        android:layout_below="@+id/now_playing_bar"
+        android:layout_alignLeft="@+id/show_info"
+        android:layout_alignStart="@+id/show_info" />
+
     <TextView
         android:text="TextView"
         android:textSize="18sp"
         android:textColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_above="@+id/play_button_big"
+        android:layout_below="@id/show_logo"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:id="@+id/show_info" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@android:drawable/ic_menu_report_image"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:layout_above="@id/show_info"
-        android:id="@+id/show_logo" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -37,7 +43,7 @@
         android:layout_marginRight="18dp"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="18dp"
-        android:id="@id/play_button_big" />
+        android:id="@+id/play_button_big" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
