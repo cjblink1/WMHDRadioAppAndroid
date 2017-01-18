@@ -7,7 +7,7 @@
     tools:context="edu.rosehulman.boylecj.wmhdonlineradio.NowPlayingFragment">
 
     <include layout="@layout/toolbar_main"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_width="match_parent"
         android:layout_gravity="top"
         android:id="@+id/now_playing_bar"
