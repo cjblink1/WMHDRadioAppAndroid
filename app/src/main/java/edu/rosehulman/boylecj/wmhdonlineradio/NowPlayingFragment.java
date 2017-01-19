@@ -64,7 +64,7 @@ public class NowPlayingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_now_playing, container, false);
+        return inflater.inflate(R.layout.now_playing_main, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -27,7 +27,7 @@ import android.view.ViewPropertyAnimator;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, NowPlayingFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private MediaPlayer mMediaPlayer;
     private Toolbar mNowPlayingBar;
@@ -138,11 +138,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        //TODO: bind to media player play/pause
     }
 
 //    public void launchNowPlaying() {

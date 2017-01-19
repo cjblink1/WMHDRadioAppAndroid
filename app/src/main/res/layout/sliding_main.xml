@@ -14,7 +14,7 @@
         android:gravity="center"/>
 
     <include
-        layout="@layout/fragment_now_playing"
+        layout="@layout/now_playing_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|top" />
