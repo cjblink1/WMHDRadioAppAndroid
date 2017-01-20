@@ -5,8 +5,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="now_playing">Now Playing</string>
+    <string name="default_song">Now Playing</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="now_playing_fragment">Now Playing Frag</string>
+    <string name="default_artist">Artist</string>
 </resources>
