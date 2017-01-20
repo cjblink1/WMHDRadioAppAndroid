@@ -18,18 +18,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, GetStreamData.DataDisplayer {
 
     private MediaPlayer mMediaPlayer;
     private ImageButton mPlayPause;
     private SlidingUpPanelLayout mPanel;
     private ImageButton mBigPlayPause;
+
+    private TextView mSongTitle;
 
     // Might be able to be replaced by a MediaPlayer function or something
     private boolean isPlaying;
@@ -61,10 +64,21 @@ public class MainActivity extends AppCompatActivity
         mPanel = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mPanel.addPanelSlideListener(new SlideListener());
 
+        mSongTitle = (TextView) findViewById(R.id.song_title);
+
         if (savedInstanceState == null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.add(R.id.fragment_container, new HomeFragment());
             ft.commit();
+        }
+
+        new GetStreamData(this).execute("http://dj.wmhdradio.org/api/live-info");
+    }
+
+    @Override
+    public void onDataLoaded(Data data) {
+        if (data != null) {
+            mSongTitle.setText(data.getCurrent().getName());
         }
     }
 
@@ -78,11 +92,10 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-            Log.d("WHMD", "State Changed");
+            setListener(mBigPlayPause);
             if (mPanel.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
                 mPlayPause.setOnClickListener(new CloseListener());
                 mPlayPause.setImageResource(R.drawable.ic_expand_more_black_24dp);
-                setListener(mBigPlayPause);
             } else {
                 //TODO: set listener based on media player state
                 setListener(mPlayPause);
