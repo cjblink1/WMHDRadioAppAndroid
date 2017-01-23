@@ -14,11 +14,11 @@ import java.io.IOException;
 public class StreamHandler {
 
     private MediaPlayer mMediaPlayer;
-    private Context mContext;
+    private MainActivity mContext;
     private Uri mUri;
 
 
-    public StreamHandler(Context context) {
+    public StreamHandler(MainActivity context) {
         this.mContext = context;
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -31,10 +31,12 @@ public class StreamHandler {
         mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
+                mContext.setPauseEnabled();
                 mediaPlayer.start();
             }
         });
         mMediaPlayer.prepareAsync();
+        mContext.setPauseDisabled();
     }
 
     public void disconnect() throws IncorrectStreamStateException {

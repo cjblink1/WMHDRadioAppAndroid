@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View view) {
             mPanel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            setListener(mPlayPause);
         }
     }
 
@@ -137,9 +138,8 @@ public class MainActivity extends AppCompatActivity
                 Log.e(getString(R.string.error), e.getMessage());
             }
             ImageButton button = (ImageButton)view;
-            button.setImageResource(R.drawable.ic_pause_black_24dp);
-            button.setOnClickListener(new PauseListener());
             isPlaying = true;
+            setListener(button);
         }
     }
 
@@ -153,9 +153,8 @@ public class MainActivity extends AppCompatActivity
                 Log.e(getString(R.string.error), e.getMessage());
             }
             ImageButton button = (ImageButton)view;
-            button.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-            button.setOnClickListener(new PlayListener());
             isPlaying = false;
+            setListener(button);
         }
     }
 
@@ -237,9 +236,23 @@ public class MainActivity extends AppCompatActivity
 
     private void setListener(ImageButton playPause) {
         if (isPlaying) {
+            playPause.setImageResource(R.drawable.ic_pause_black_24dp);
             playPause.setOnClickListener(new PauseListener());
         } else {
+            playPause.setImageResource(R.drawable.ic_play_arrow_black_24dp);
             playPause.setOnClickListener(new PlayListener());
         }
     }
+
+    public void setPauseDisabled() {
+        mBigPlayPause.setEnabled(false);
+        mPlayPause.setEnabled(false);
+
+    }
+
+    public void setPauseEnabled() {
+        mBigPlayPause.setEnabled(true);
+        mPlayPause.setEnabled(true);
+    }
+    
 }
