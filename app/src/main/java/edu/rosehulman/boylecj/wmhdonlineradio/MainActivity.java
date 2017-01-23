@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         }
 
-        new GetStreamData(this).execute("http://dj.wmhdradio.org/api/live-info");
+        (new UpdateTimer(this)).run();
+//        new GetStreamData(this).execute("http://dj.wmhdradio.org/api/live-info");
     }
 
     @Override
