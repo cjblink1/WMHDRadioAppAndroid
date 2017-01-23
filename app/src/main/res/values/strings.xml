@@ -12,4 +12,6 @@
     <string name="default_artist">Artist</string>
     <string name="default_show_title">Show title</string>
     <string name="default_show_info">Show info</string>
+    <string name="stream_url">http://icecast.wmhdradio.org:8000/wmhd</string>
+    <string name="error">ERROR</string>
 </resources>

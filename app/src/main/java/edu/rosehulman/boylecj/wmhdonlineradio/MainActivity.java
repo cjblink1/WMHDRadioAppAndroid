@@ -28,7 +28,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GetStreamData.DataDisplayer {
 
-    private MediaPlayer mMediaPlayer;
+    private StreamHandler mStreamHandler;
     private ImageButton mPlayPause;
     private SlidingUpPanelLayout mPanel;
     private ImageButton mBigPlayPause;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        isPlaying = true;
+        isPlaying = false;
 
         mPlayPause = (ImageButton) findViewById(R.id.play_button);
 
@@ -129,7 +129,13 @@ public class MainActivity extends AppCompatActivity
     private class PlayListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            //TODO: play media player here
+            Log.d("TTT", "pressed play");
+            try {
+                mStreamHandler.connect();
+            } catch (IOException e) {
+            } catch (StreamHandler.IncorrectStreamStateException e) {
+                Log.e(getString(R.string.error), e.getMessage());
+            }
             ImageButton button = (ImageButton)view;
             button.setImageResource(R.drawable.ic_pause_black_24dp);
             button.setOnClickListener(new PauseListener());
@@ -140,7 +146,12 @@ public class MainActivity extends AppCompatActivity
     private class PauseListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            //TODO: play media player here
+            Log.d("TTT", "pressed pause");
+            try {
+                mStreamHandler.disconnect();
+            } catch (StreamHandler.IncorrectStreamStateException e) {
+                Log.e(getString(R.string.error), e.getMessage());
+            }
             ImageButton button = (ImageButton)view;
             button.setImageResource(R.drawable.ic_play_arrow_black_24dp);
             button.setOnClickListener(new PlayListener());
@@ -151,22 +162,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        Uri myUri = Uri.parse("http://icecast.wmhdradio.org:8000/wmhd"); // initialize Uri here
-        mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.start();
-            }
-        });
+        mStreamHandler = new StreamHandler(this);
+    }
 
-        try {
-            mMediaPlayer.setDataSource(getApplicationContext(), myUri);
-            mMediaPlayer.prepareAsync();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mStreamHandler.close();
     }
 
     @Override
@@ -236,10 +238,8 @@ public class MainActivity extends AppCompatActivity
     private void setListener(ImageButton playPause) {
         if (isPlaying) {
             playPause.setOnClickListener(new PauseListener());
-            playPause.setImageResource(R.drawable.ic_pause_black_24dp);
         } else {
             playPause.setOnClickListener(new PlayListener());
-            playPause.setImageResource(R.drawable.ic_play_arrow_black_24dp);
         }
     }
 }
