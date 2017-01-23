@@ -45,7 +45,10 @@ public class Data {
     }
 
     public Show getCurrentShow() {
-        return currentShow[0];
+        if (currentShow.length > 0) {
+            return currentShow[0];
+        }
+        return null;
     }
 
     public void setCurrentShow(Show[] currentShow) {

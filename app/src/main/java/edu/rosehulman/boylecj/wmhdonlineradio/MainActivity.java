@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -32,7 +33,12 @@ public class MainActivity extends AppCompatActivity
     private SlidingUpPanelLayout mPanel;
     private ImageButton mBigPlayPause;
 
+    private TextView mShowInfo;
     private TextView mSongTitle;
+    private TextView mSongArtist;
+    private TextView mShowTitle;
+
+    private ProgressBar mProgressBar;
 
     // Might be able to be replaced by a MediaPlayer function or something
     private boolean isPlaying;
@@ -65,6 +71,11 @@ public class MainActivity extends AppCompatActivity
         mPanel.addPanelSlideListener(new SlideListener());
 
         mSongTitle = (TextView) findViewById(R.id.song_title);
+        mShowInfo = (TextView) findViewById(R.id.show_info);
+        mSongArtist = (TextView) findViewById(R.id.song_artist);
+        mShowTitle = (TextView) findViewById(R.id.show_title);
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         if (savedInstanceState == null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -77,8 +88,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDataLoaded(Data data) {
-        if (data != null) {
+        if (data != null && data.getCurrent() != null && data.getCurrentShow() != null) {
             mSongTitle.setText(data.getCurrent().getName());
+            mShowInfo.setText(data.getCurrentShow().getName());
+            mShowTitle.setText(data.getCurrentShow().getName());
+            mSongArtist.setVisibility(View.GONE);
         }
     }
 

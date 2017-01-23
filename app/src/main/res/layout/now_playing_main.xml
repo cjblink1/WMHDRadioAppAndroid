@@ -22,12 +22,22 @@
         android:layout_alignStart="@+id/show_info" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/default_show_title"
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/show_logo"
+        android:layout_alignLeft="@id/show_logo"
+        android:id="@+id/show_title" />
+
+    <TextView
+        android:text="@string/default_show_info"
         android:textSize="18sp"
         android:textColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_below="@id/show_logo"
+        android:layout_below="@id/show_title"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:id="@+id/show_info" />
@@ -53,6 +63,6 @@
         android:layout_alignStart="@+id/show_info"
         android:layout_toLeftOf="@id/play_button_big"
         android:layout_margin="18dp"
-        android:id="@+id/progressBar3" />
+        android:id="@+id/progress_bar" />
 
 </RelativeLayout>

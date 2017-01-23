@@ -10,4 +10,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="now_playing_fragment">Now Playing Frag</string>
     <string name="default_artist">Artist</string>
+    <string name="default_show_title">Show title</string>
+    <string name="default_show_info">Show info</string>
 </resources>

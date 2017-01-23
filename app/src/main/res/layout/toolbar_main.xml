@@ -29,6 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/song_title"
+                android:id="@+id/song_artist"
                 android:text="@string/default_artist"
                 android:textSize="16sp"/>
 
