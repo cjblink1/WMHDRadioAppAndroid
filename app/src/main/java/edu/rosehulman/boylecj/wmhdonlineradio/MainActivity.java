@@ -24,6 +24,9 @@ import android.widget.TextView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.IOException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GetStreamData.DataDisplayer {
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity
     private TextView mShowTitle;
 
     private ProgressBar mProgressBar;
+    private boolean initiallyLoaded = false;
+    private ProgressBarUpdateTask mPBUpdateTask;
 
     // Might be able to be replaced by a MediaPlayer function or something
     private boolean isPlaying;
@@ -77,6 +82,9 @@ public class MainActivity extends AppCompatActivity
 
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
+        // start progress bar updater
+        mPBUpdateTask = new ProgressBarUpdateTask();
+
         if (savedInstanceState == null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.add(R.id.fragment_container, new HomeFragment());
@@ -95,6 +103,23 @@ public class MainActivity extends AppCompatActivity
             mShowTitle.setText(data.getCurrentShow().getName());
             mSongArtist.setVisibility(View.GONE);
         }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
+        String showStartString = data.getCurrentShow().getStart_timestamp() + " -0500";
+        String showEndString = data.getCurrentShow().getEnd_timestamp() + " -0500";
+
+        Date showStartDate = sdf.parse(showStartString, new ParsePosition(0));
+        Date showEndDate = sdf.parse(showEndString, new ParsePosition(0));
+
+        if (!initiallyLoaded) {
+
+            mPBUpdateTask.execute(new Params(showStartDate.getTime(), showEndDate.getTime(), this));
+            initiallyLoaded = true;
+        } else {
+            mPBUpdateTask.updateInfo(showStartDate.getTime(), showEndDate.getTime());
+        }
+
+
     }
 
     // Private listener classes here:
@@ -254,6 +279,10 @@ public class MainActivity extends AppCompatActivity
     public void setPauseEnabled() {
         mBigPlayPause.setEnabled(true);
         mPlayPause.setEnabled(true);
+    }
+
+    public void updateProgressBar(int progress) {
+        mProgressBar.setProgress(progress);
     }
     
 }
