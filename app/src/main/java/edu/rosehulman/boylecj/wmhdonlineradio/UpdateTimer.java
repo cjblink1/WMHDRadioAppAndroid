@@ -28,12 +28,14 @@ public class UpdateTimer extends TimerTask implements GetStreamData.DataDisplaye
 
     @Override
     public void onDataLoaded(Data data) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSS Z");
-        Timer timer = new Timer();
-        UpdateTimer task = new UpdateTimer(mActivity);
-        Date time = sdf.parse(data.getCurrent().getEnds() + " -0000",new ParsePosition(0));
-        Log.d("WMHD", time.getTime()+" "+ (new Date()).getTime());
-        timer.schedule(task, time.getTime() - (new Date()).getTime() + 1000);
-        mActivity.onDataLoaded(data);
+        if (data.getCurrent().getEnds() != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSS Z");
+            Timer timer = new Timer();
+            UpdateTimer task = new UpdateTimer(mActivity);
+            Date time = sdf.parse(data.getCurrent().getEnds() + " -0000", new ParsePosition(0));
+            Log.d("WMHD", time.getTime() + " " + (new Date()).getTime());
+            timer.schedule(task, time.getTime() - (new Date()).getTime() + 1000);
+            mActivity.onDataLoaded(data);
+        }
     }
 }
