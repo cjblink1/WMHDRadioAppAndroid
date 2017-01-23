@@ -26,7 +26,6 @@ public class GetStreamData extends AsyncTask<String, Void, Data> {
         Data data = null;
         try {
             data = new ObjectMapper().readValue(new URL(urlString), Data.class);
-            Log.d("WMHD", "REading");
         } catch (IOException e) {
             Log.d("WMHD", "Error: " + e.toString());
         }
