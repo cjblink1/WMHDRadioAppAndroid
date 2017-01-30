@@ -1,10 +1,5 @@
 package edu.rosehulman.boylecj.wmhdonlineradio;
 
-import android.media.AudioManager;
-import android.media.Image;
-import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -236,16 +231,17 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             launchHome();
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_schedule) {
+            Log.d("WMHD", "schedule");
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container, new ScheduleFragment());
+            ft.addToBackStack("schedule");
+            ft.commit();
+        } else if (id == R.id.nav_about) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container, new AboutFragment());
+            ft.addToBackStack("about");
+            ft.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
