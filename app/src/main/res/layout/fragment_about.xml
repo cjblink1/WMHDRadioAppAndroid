@@ -12,15 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextLight"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="5dp"
+        android:layout_margin="5dp"
         android:id="@+id/aboutTitle"
         android:layout_weight="1" />
+
+     <include
+        layout="@layout/divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aboutTitle"
+        />
+
     <ScrollView
         android:id="@+id/scroll_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
         android:scrollbars="vertical"
         android:fillViewport="true"
         android:layout_below="@id/aboutTitle">

@@ -11,15 +11,27 @@
         android:layout_height="wrap_content"
         android:text="@string/schedule_title"
         android:textColor="@color/colorTextLight"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_margin="5dp"
         android:textSize="30sp"/>
+
+<include
+    layout="@layout/divider" />
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackgroundDark"
-        android:id="@+id/schedule_pager"/>
+        android:id="@+id/schedule_pager">
+
+    <android.support.v4.view.PagerTabStrip
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:id="@+id/title_strip"/>
+
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>
 <!--

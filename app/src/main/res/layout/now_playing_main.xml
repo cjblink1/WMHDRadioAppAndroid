@@ -28,8 +28,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/show_logo"
+        android:layout_marginBottom="5dp"
         android:layout_alignLeft="@id/show_logo"
         android:id="@+id/show_title" />
+
+    <include
+        layout="@layout/divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/show_title"
+        />
 
     <TextView
         android:text="@string/default_show_info"
@@ -45,13 +53,14 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_media_play"
+        app:srcCompat="@drawable/ic_play_arrow_black_24dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="18dp"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="18dp"
+        android:background="@color/colorBackground"
         android:id="@+id/play_button_big" />
 
     <ProgressBar

@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerTabStrip;
+import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,5 +37,8 @@ public class ScheduleFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mPager = (ViewPager) view.findViewById(R.id.schedule_pager);
         mPager.setAdapter(new ScheduleAdapter(getChildFragmentManager()));
+        PagerTabStrip strip = (PagerTabStrip) view.findViewById(R.id.title_strip);
+        strip.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTextLight));
+        strip.setTabIndicatorColor(ContextCompat.getColor(getContext(), R.color.colorBackgroundDark));
     }
 }
