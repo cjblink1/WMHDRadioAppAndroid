@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 
 @JsonIgnoreProperties(value = {"previous","next","nextShow","timezone","timezoneOffset","AIRTIME_API_VERSION"})
-public class Data {
+public class LiveInfoData {
     private String env;
     private String schedulerTime;
     private Song current;
     private Show currentShow[];
 
-    public Data() {
+    public LiveInfoData() {
         env = null;
         schedulerTime = null;
         current = null;

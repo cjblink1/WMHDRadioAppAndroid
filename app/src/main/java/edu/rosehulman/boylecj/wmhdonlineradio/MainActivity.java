@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDataLoaded(Data data) {
+    public void onDataLoaded(LiveInfoData data) {
         if (data != null && data.getCurrent() != null && data.getCurrentShow() != null) {
             mSongTitle.setText(data.getCurrent().getName());
             mShowInfo.setText(data.getCurrentShow().getName());

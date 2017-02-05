@@ -27,7 +27,7 @@ public class UpdateTimer extends TimerTask implements GetStreamData.DataDisplaye
     }
 
     @Override
-    public void onDataLoaded(Data data) {
+    public void onDataLoaded(LiveInfoData data) {
         if (data.getCurrent().getEnds() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSS Z");
             Timer timer = new Timer();

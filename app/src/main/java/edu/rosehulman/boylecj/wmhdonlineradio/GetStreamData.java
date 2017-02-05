@@ -12,7 +12,7 @@ import java.net.URL;
  * Created by luke on 1/19/17.
  */
 
-public class GetStreamData extends AsyncTask<String, Void, Data> {
+public class GetStreamData extends AsyncTask<String, Void, LiveInfoData> {
 
     private DataDisplayer mDataDisplayer;
 
@@ -21,11 +21,11 @@ public class GetStreamData extends AsyncTask<String, Void, Data> {
     }
 
     @Override
-    protected Data doInBackground(String... urlStrings) {
+    protected LiveInfoData doInBackground(String... urlStrings) {
         String urlString = urlStrings[0];
-        Data data = null;
+        LiveInfoData data = null;
         try {
-            data = new ObjectMapper().readValue(new URL(urlString), Data.class);
+            data = new ObjectMapper().readValue(new URL(urlString), LiveInfoData.class);
         } catch (IOException e) {
             Log.d("WMHD", "Error: " + e.toString());
         }
@@ -33,13 +33,13 @@ public class GetStreamData extends AsyncTask<String, Void, Data> {
     }
 
     @Override
-    protected void onPostExecute(Data data) {
+    protected void onPostExecute(LiveInfoData data) {
         super.onPostExecute(data);
         mDataDisplayer.onDataLoaded(data);
     }
 
     public interface DataDisplayer {
-        public void onDataLoaded(Data data);
+        public void onDataLoaded(LiveInfoData data);
     }
 
 }
