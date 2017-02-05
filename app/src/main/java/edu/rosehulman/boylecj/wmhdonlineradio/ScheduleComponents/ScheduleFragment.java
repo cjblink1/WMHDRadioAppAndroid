@@ -39,6 +39,6 @@ public class ScheduleFragment extends Fragment {
         mPager.setAdapter(new ScheduleAdapter(getChildFragmentManager()));
         PagerTabStrip strip = (PagerTabStrip) view.findViewById(R.id.title_strip);
         strip.setTextColor(ContextCompat.getColor(getContext(), R.color.colorTextLight));
-        strip.setTabIndicatorColor(ContextCompat.getColor(getContext(), R.color.colorBackgroundDark));
+        strip.setTabIndicatorColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
     }
 }

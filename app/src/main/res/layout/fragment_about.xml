@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,22 +6,22 @@
     android:background="@color/colorBackground"
     tools:context="edu.rosehulman.boylecj.wmhdonlineradio.AboutFragment">
 
-    <TextView
-        android:text="@string/about_title"
-        android:textSize="30sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorTextLight"
-        android:layout_margin="5dp"
-        android:id="@+id/aboutTitle"
-        android:layout_weight="1" />
+    <!--<TextView-->
+        <!--android:text="@string/about_title"-->
+        <!--android:textSize="30sp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="@color/colorTextLight"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:id="@+id/aboutTitle"-->
+        <!--android:layout_weight="1" />-->
 
-     <include
-        layout="@layout/divider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/aboutTitle"
-        />
+     <!--<include-->
+        <!--layout="@layout/divider"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/aboutTitle"-->
+        <!--/>-->
 
     <ScrollView
         android:id="@+id/scroll_id"
@@ -30,14 +30,15 @@
         android:layout_marginTop="5dp"
         android:scrollbars="vertical"
         android:fillViewport="true"
-        android:layout_below="@id/aboutTitle">
+        >
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/aboutText"
             android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:textColor="@color/colorTextLight"/>
     </ScrollView>
 
-</RelativeLayout>
+</FrameLayout>

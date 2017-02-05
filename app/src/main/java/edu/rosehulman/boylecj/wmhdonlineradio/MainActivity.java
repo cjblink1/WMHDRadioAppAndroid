@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.add(R.id.fragment_container, new HomeFragment());
             ft.commit();
+            setTitle("Home");
         }
 
         (new UpdateTimer(this)).run();
@@ -209,8 +210,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+        return false;
     }
 
     @Override
@@ -237,16 +239,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             launchHome();
         } else if (id == R.id.nav_schedule) {
-            Log.d("WMHD", "schedule");
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, new ScheduleFragment());
-            ft.addToBackStack("schedule");
-            ft.commit();
+            launchSchedule();
         } else if (id == R.id.nav_about) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, new AboutFragment());
-            ft.addToBackStack("about");
-            ft.commit();
+            launchAbout();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -254,11 +249,28 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void launchAbout() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, new AboutFragment());
+        ft.addToBackStack("about");
+        ft.commit();
+        setTitle("About");
+    }
+
+    public void launchSchedule() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, new ScheduleFragment());
+        ft.addToBackStack("schedule");
+        ft.commit();
+        setTitle("Schedule");
+    }
+
     public void launchHome() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, new HomeFragment());
         ft.addToBackStack("home");
         ft.commit();
+        setTitle("Home");
     }
 
     private void setListener(ImageButton playPause) {
