@@ -22,7 +22,7 @@ public class UpdateTimer extends TimerTask implements GetStreamData.DataDisplaye
 
     @Override
     public void run() {
-        new GetStreamData(this).execute("http://dj.wmhdradio.org/api/live-info");
+        new GetStreamData(this).execute(Constants.LIVE_INFO_URL);
         Log.d("WMHD", "Timer!");
     }
 
