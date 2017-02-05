@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
 
         mBigPlayPause = (ImageButton) findViewById(R.id.play_button_big);
 
-        setListener((mPlayPause));
+        setListener(mPlayPause, false);
 
         mPanel = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mPanel.addPanelSlideListener(new SlideListener());
@@ -133,13 +133,13 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-            setListener(mBigPlayPause);
+            setListener(mBigPlayPause, true);
             if (mPanel.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
                 mPlayPause.setOnClickListener(new CloseListener());
                 mPlayPause.setImageResource(R.drawable.ic_expand_more_black_24dp);
             } else {
                 //TODO: set listener based on media player state
-                setListener(mPlayPause);
+                setListener(mPlayPause, false);
             }
         }
 
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View view) {
             mPanel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-            setListener(mPlayPause);
+            setListener(mPlayPause, false);
         }
     }
 
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity
             }
             ImageButton button = (ImageButton)view;
             isPlaying = true;
-            setListener(button);
+            setListener(button, button.getId() == R.id.play_button_big);
         }
     }
 
@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity
             }
             ImageButton button = (ImageButton)view;
             isPlaying = false;
-            setListener(button);
+            setListener(button, button.getId() == R.id.play_button_big);
         }
     }
 
@@ -273,7 +273,17 @@ public class MainActivity extends AppCompatActivity
         setTitle("Home");
     }
 
-    private void setListener(ImageButton playPause) {
+    private void setListener(ImageButton playPause, boolean isWhite) {
+        if (isWhite) {
+            if (isPlaying) {
+                playPause.setImageResource(R.drawable.ic_pause_white_24dp);
+                playPause.setOnClickListener(new PauseListener());
+            } else {
+                playPause.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+                playPause.setOnClickListener(new PlayListener());
+            }
+            return;
+        }
         if (isPlaying) {
             playPause.setImageResource(R.drawable.ic_pause_black_24dp);
             playPause.setOnClickListener(new PauseListener());
