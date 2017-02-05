@@ -1,13 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.rosehulman.boylecj.wmhdonlineradio.ScheduleFragment">
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    tools:context="edu.rosehulman.boylecj.wmhdonlineradio.ScheduleComponents.ScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="@string/schedule_title"
+        android:textColor="@color/colorTextLight"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"/>
 
-</FrameLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundDark"
+        android:id="@+id/schedule_pager"/>
+
+</LinearLayout>
+<!--
+<TextView
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:text="@string/hello_blank_fragment" />
+</android.support.v4.view.ViewPager>
+-->

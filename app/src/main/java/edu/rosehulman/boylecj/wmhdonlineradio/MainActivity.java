@@ -23,6 +23,8 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import edu.rosehulman.boylecj.wmhdonlineradio.ScheduleComponents.ScheduleFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GetStreamData.DataDisplayer {
 

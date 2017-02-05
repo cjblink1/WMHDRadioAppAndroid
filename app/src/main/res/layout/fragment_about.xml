@@ -11,11 +11,11 @@
         android:textSize="30sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/aboutTitle"
         android:textColor="@color/colorTextLight"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
+        android:id="@+id/aboutTitle"
         android:layout_weight="1" />
     <ScrollView
         android:id="@+id/scroll_id"
