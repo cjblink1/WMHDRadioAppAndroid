@@ -19,4 +19,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_title">About</string>
     <string name="schedule_title">Schedule</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="next_monday">Next Monday</string>
+    <string name="next_tuesday">Next Tuesday</string>
+    <string name="next_wednesday">Next Wednesday</string>
+    <string name="next_thursday">Next Thursday</string>
+    <string name="next_friday">Next Friday</string>
+    <string name="next_saturday">Next Saturday</string>
+    <string name="next_sunday">Next Sunday</string>
 </resources>

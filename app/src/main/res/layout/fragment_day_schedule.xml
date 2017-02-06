@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     tools:context="edu.rosehulman.boylecj.wmhdonlineradio.ScheduleComponents.DayScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Day Fragment" />
+        android:id="@+id/day_recycler_view"/>
 
 </FrameLayout>
