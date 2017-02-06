@@ -39,6 +39,7 @@ public class DaySection extends StatelessSection {
         ItemViewHolder itemHolder = (ItemViewHolder)holder;
 
         itemHolder.mName.setText(shows[position].getName());
+        itemHolder.mStart.setText(shows[position].getStart_timestamp());
     }
 
     @Override
@@ -56,10 +57,12 @@ public class DaySection extends StatelessSection {
     class ItemViewHolder extends RecyclerView.ViewHolder{
 
         TextView mName;
+        TextView mStart;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             mName = (TextView)itemView.findViewById(R.id.section_item_name);
+            mStart = (TextView)itemView.findViewById(R.id.section_item_start);
         }
     }
 
