@@ -33,4 +33,7 @@
     <string name="next_friday">Next Friday</string>
     <string name="next_saturday">Next Saturday</string>
     <string name="next_sunday">Next Sunday</string>
+    <string name="about_page_title">About</string>
+    <string name="schedule_page_title">Schedule</string>
+    <string name="home_page_title">Home</string>
 </resources>

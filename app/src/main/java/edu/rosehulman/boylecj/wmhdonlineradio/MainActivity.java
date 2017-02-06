@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.add(R.id.fragment_container, new HomeFragment());
             ft.commit();
-            setTitle("Home");
         }
 
         (new UpdateTimer(this)).run();
@@ -254,7 +253,6 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.fragment_container, new AboutFragment());
         ft.addToBackStack("about");
         ft.commit();
-        setTitle("About");
     }
 
     public void launchSchedule() {
@@ -262,7 +260,6 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.fragment_container, new ScheduleFragment());
         ft.addToBackStack("schedule");
         ft.commit();
-        setTitle("Schedule");
     }
 
     public void launchHome() {
@@ -270,7 +267,6 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.fragment_container, new HomeFragment());
         ft.addToBackStack("home");
         ft.commit();
-        setTitle("Home");
     }
 
     private void setListener(ImageButton playPause, boolean isWhite) {
