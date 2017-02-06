@@ -5,9 +5,11 @@
     tools:context="edu.rosehulman.boylecj.wmhdonlineradio.ScheduleComponents.WeekScheduleFragment">
 
     <android.support.v7.widget.RecyclerView
+        android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/week_recycler_view"/>
+        android:id="@+id/week_recycler_view"
+        android:padding="5dp"/>
 
 
 </FrameLayout>
