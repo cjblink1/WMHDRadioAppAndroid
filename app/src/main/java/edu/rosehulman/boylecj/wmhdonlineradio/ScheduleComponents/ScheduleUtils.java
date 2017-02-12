@@ -27,11 +27,11 @@ public class ScheduleUtils {
         StringBuilder sb = new StringBuilder();
         appendTime(sb, cal);
 
-        if (!TimeZone.getDefault().equals(TimeZone.getTimeZone("EST")))
+        if (!TimeZone.getDefault().equals(TimeZone.getTimeZone("EDT")))
         {
             sb.append(" EST ");
             sb.append("(");
-            cal.setTimeZone(TimeZone.getTimeZone("EST"));
+            cal.setTimeZone(TimeZone.getTimeZone("EDT"));
             appendTime(sb, cal);
             sb.append(" "+TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT));
             sb.append(")");
