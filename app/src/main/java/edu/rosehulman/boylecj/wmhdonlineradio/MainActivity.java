@@ -98,10 +98,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDataLoaded(LiveInfoData data) {
         if (data != null && data.getCurrent() != null && data.getCurrentShow() != null) {
-            mSongTitle.setText(data.getCurrent().getName());
+            mSongTitle.setText(data.getCurrent().getTrack_title());
             mShowInfo.setText(data.getCurrentShow().getName());
             mShowTitle.setText(data.getCurrentShow().getName());
-            mSongArtist.setVisibility(View.GONE);
+            mSongArtist.setText(data.getCurrent().getArtist_name());
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");

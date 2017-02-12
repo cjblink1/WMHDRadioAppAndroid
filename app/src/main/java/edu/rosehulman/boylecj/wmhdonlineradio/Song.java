@@ -13,6 +13,24 @@ public class Song {
     private String starts;
     private String ends;
     private String type;
+    private String artist_name;
+    private String track_title;
+
+    public String getArtist_name() {
+        return artist_name;
+    }
+
+    public void setArtist_name(String artist_name) {
+        this.artist_name = artist_name;
+    }
+
+    public String getTrack_title() {
+        return track_title;
+    }
+
+    public void setTrack_title(String track_title) {
+        this.track_title = track_title;
+    }
 
     public Song() {
         name = null;
