@@ -29,7 +29,7 @@ public class ScheduleUtils {
 
         if (!TimeZone.getDefault().equals(TimeZone.getTimeZone("EDT")))
         {
-            sb.append(" EST ");
+            sb.append(" EDT ");
             sb.append("(");
             cal.setTimeZone(TimeZone.getTimeZone("EDT"));
             appendTime(sb, cal);
