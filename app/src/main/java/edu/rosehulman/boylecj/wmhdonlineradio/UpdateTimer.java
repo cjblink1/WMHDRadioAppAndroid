@@ -34,7 +34,7 @@ public class UpdateTimer extends TimerTask implements GetStreamData.DataDisplaye
 
     @Override
     public void onDataLoaded(LiveInfoData data) {
-        if (data.getCurrent().getEnds() != null) {
+        if (data != null && data.getCurrent().getEnds() != null) {
             SimpleDateFormat sdfEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSS Z");
             SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
 
