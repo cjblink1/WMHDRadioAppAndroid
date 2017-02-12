@@ -39,7 +39,7 @@ public class DaySection extends StatelessSection {
         ItemViewHolder itemHolder = (ItemViewHolder)holder;
 
         itemHolder.mName.setText(shows[position].getName());
-        itemHolder.mStart.setText(shows[position].getStart_timestamp());
+        itemHolder.mStart.setText(ScheduleUtils.readableTime(shows[position].getStart_timestamp()));
     }
 
     @Override

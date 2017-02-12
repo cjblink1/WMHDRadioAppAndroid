@@ -1,6 +1,8 @@
 package edu.rosehulman.boylecj.wmhdonlineradio.ScheduleComponents;
 
 
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,8 +37,11 @@ public class WeekScheduleFragment extends Fragment implements GetWeekInfoTask.We
                              Bundle savedInstanceState) {
 
         // Get current week information
-        (new GetWeekInfoTask(this)).execute(Constants.WEEK_INFO_URL);
-
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+            (new GetWeekInfoTask(this)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, Constants.WEEK_INFO_URL);
+        } else {
+            (new GetWeekInfoTask(this)).execute(Constants.WEEK_INFO_URL);
+        }
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_week_schedule_component, container, false);
         mRecyclerView = (RecyclerView)view.findViewById(R.id.week_recycler_view);
