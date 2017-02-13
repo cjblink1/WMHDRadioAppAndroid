@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     private ProgressBar mProgressBar;
     private boolean initiallyLoaded = false;
     private ProgressBarUpdateTask mPBUpdateTask;
+    private UpdateTimer mTimer;
 
     // Might be able to be replaced by a MediaPlayer function or something
     private boolean isPlaying;
@@ -97,7 +98,8 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         }
 
-        (new UpdateTimer(this)).run();
+        mTimer = new UpdateTimer(this);
+        mTimer.run();
 //        new GetStreamData(this).execute("http://dj.wmhdradio.org/api/live-info");
 
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
@@ -339,5 +341,11 @@ public class MainActivity extends AppCompatActivity
     public void updateProgressBar(int progress) {
         mProgressBar.setProgress(progress);
     }
+
+    public void mediaPrepared() {
+        mTimer.cancel();
+        mTimer.run();
+    }
     
 }
+

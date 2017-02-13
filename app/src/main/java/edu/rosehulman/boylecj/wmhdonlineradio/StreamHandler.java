@@ -39,6 +39,7 @@ public class StreamHandler {
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mContext.setPauseEnabled();
                 mediaPlayer.start();
+                mContext.mediaPrepared();
             }
         });
         mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
@@ -93,5 +94,4 @@ public class StreamHandler {
     public void resetConnectionAttempts(){
         numConnectionAttempts = 0;
     }
-
 }
