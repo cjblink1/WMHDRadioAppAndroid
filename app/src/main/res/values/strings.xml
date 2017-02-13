@@ -37,4 +37,6 @@
     <string name="home_page_title">Home</string>
     <string name="share_url">Share URL</string>
     <string name="schedule_fetch_error_msg">Unable to fetch schedule info. Please check your internet connection.</string>
+    <string name="stream_connection_error_message">Couldn\'t connect to stream. Retrying connection...</string>
+    <string name="stream_connection_failed_message">Error connecting to stream. Please check your internet connection.</string>
 </resources>
