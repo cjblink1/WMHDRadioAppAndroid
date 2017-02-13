@@ -295,6 +295,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void resetPause() {
+        isPlaying = false;
+        setListener(mPlayPause, mPlayPause.getId() == R.id.play_button_big);
+        setListener(mBigPlayPause, mBigPlayPause.getId() == R.id.play_button_big);
+    }
+
     public void setPauseDisabled() {
         mBigPlayPause.setEnabled(false);
         mPlayPause.setEnabled(false);
