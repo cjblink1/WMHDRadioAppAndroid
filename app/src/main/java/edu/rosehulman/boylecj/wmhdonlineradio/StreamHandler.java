@@ -46,6 +46,7 @@ public class StreamHandler {
             public boolean onError(MediaPlayer mediaPlayer, int what, int extra) {
                 if (numConnectionAttempts < NUM_ALLOWED_CONNECTION_ATTEMPTS) {
                     Log.d(Constants.TAG, "Couldn't connect, trying again...");
+                    mContext.showToast("Couldn't connect to stream. Retrying connection...");
                     numConnectionAttempts++;
                     try {
                         connect();
@@ -56,6 +57,7 @@ public class StreamHandler {
                     }
                 } else {
                     Log.d(Constants.TAG, "Exceeded number of allowed connection attempts");
+                    mContext.showToast("Error connecting to stream. Please check your internet connection.");
                     mContext.resetPause();
                     mContext.setPauseEnabled();
                 }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -299,6 +300,11 @@ public class MainActivity extends AppCompatActivity
         isPlaying = false;
         setListener(mPlayPause, mPlayPause.getId() == R.id.play_button_big);
         setListener(mBigPlayPause, mBigPlayPause.getId() == R.id.play_button_big);
+    }
+
+    public void showToast(String msg) {
+        Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
+        toast.show();
     }
 
     public void setPauseDisabled() {
