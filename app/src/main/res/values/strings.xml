@@ -36,4 +36,5 @@
     <string name="schedule_page_title">Schedule</string>
     <string name="home_page_title">Home</string>
     <string name="share_url">Share URL</string>
+    <string name="schedule_fetch_error_msg">Unable to fetch schedule info. Please check your internet connection.</string>
 </resources>

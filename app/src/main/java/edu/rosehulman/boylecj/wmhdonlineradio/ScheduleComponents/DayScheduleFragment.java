@@ -15,6 +15,7 @@ import java.util.Calendar;
 
 import edu.rosehulman.boylecj.wmhdonlineradio.Constants;
 import edu.rosehulman.boylecj.wmhdonlineradio.GetWeekInfoTask;
+import edu.rosehulman.boylecj.wmhdonlineradio.MainActivity;
 import edu.rosehulman.boylecj.wmhdonlineradio.R;
 import edu.rosehulman.boylecj.wmhdonlineradio.Show;
 import edu.rosehulman.boylecj.wmhdonlineradio.WeekInfoData;
@@ -52,9 +53,13 @@ public class DayScheduleFragment extends Fragment implements GetWeekInfoTask.Wee
 
     @Override
     public void onWeekInfoLoaded(WeekInfoData wid) {
-        mAdapter = new SectionedRecyclerViewAdapter();
-        mAdapter.addSection(createTodaySecation(wid));
-        mRecyclerView.setAdapter(mAdapter);
+        if (wid != null) {
+            mAdapter = new SectionedRecyclerViewAdapter();
+            mAdapter.addSection(createTodaySecation(wid));
+            mRecyclerView.setAdapter(mAdapter);
+        } else {
+            ((MainActivity)getActivity()).showToast(getString(R.string.schedule_fetch_error_msg));
+        }
     }
 
     private DaySection createTodaySecation(WeekInfoData wid){
