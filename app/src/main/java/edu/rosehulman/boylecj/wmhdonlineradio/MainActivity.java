@@ -3,6 +3,8 @@ package edu.rosehulman.boylecj.wmhdonlineradio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -63,8 +65,10 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.setCheckedItem(R.id.nav_home);
 
         isPlaying = false;
 
@@ -95,6 +99,20 @@ public class MainActivity extends AppCompatActivity
 
         (new UpdateTimer(this)).run();
 //        new GetStreamData(this).execute("http://dj.wmhdradio.org/api/live-info");
+
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                if (frag instanceof HomeFragment) {
+                    navigationView.setCheckedItem(R.id.nav_home);
+                } else if (frag instanceof AboutFragment) {
+                    navigationView.setCheckedItem(R.id.nav_about);
+                } else if (frag instanceof  ScheduleFragment) {
+                    navigationView.setCheckedItem(R.id.nav_schedule);
+                }
+            }
+        });
     }
 
     @Override
