@@ -17,6 +17,8 @@ import java.util.TimerTask;
 public class UpdateTimer extends TimerTask implements GetStreamData.DataDisplayer {
 
     private MainActivity mActivity;
+    public static SimpleDateFormat sdfEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSS Z");
+    public static SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
 
     public UpdateTimer(MainActivity activity) {
         mActivity = activity;
@@ -35,14 +37,12 @@ public class UpdateTimer extends TimerTask implements GetStreamData.DataDisplaye
     @Override
     public void onDataLoaded(LiveInfoData data) {
         if (data != null && data.getCurrent().getEnds() != null) {
-            SimpleDateFormat sdfEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSS Z");
-            SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
 
             Timer timer = new Timer();
             UpdateTimer task = new UpdateTimer(mActivity);
             Log.d(Constants.TAG, "Testing " + data.getSchedulerTime());
             Date timeEnd = sdfEnd.parse(data.getCurrent().getEnds() + " -0000", new ParsePosition(0));
-            Date timeNow = sdfNow.parse(data.getSchedulerTime() + " -0500", new ParsePosition(0));
+            Date timeNow = sdfNow.parse(data.getSchedulerTime() + Constants.STATION_TIME_OFFSET, new ParsePosition(0));
             if (timeEnd == null) {
                 Log.e(Constants.TAG, "Could not fetch or parse end time");
                 mActivity.onDataLoaded(data);

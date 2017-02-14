@@ -1,6 +1,7 @@
 package edu.rosehulman.boylecj.wmhdonlineradio.ScheduleComponents;
 
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -94,6 +95,6 @@ public class DayScheduleFragment extends Fragment implements GetWeekInfoTask.Wee
         }
 
 
-        return new DaySection(day, showsForToday);
+        return new DaySection(day, showsForToday, this);
     }
 }

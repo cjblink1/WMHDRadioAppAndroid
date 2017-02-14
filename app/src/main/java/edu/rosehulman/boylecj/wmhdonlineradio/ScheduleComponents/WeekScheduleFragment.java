@@ -50,26 +50,28 @@ public class WeekScheduleFragment extends Fragment implements GetWeekInfoTask.We
 
     }
 
+
+
     @Override
     public void onWeekInfoLoaded(WeekInfoData wid) {
         if (wid != null) {
             Log.d(Constants.TAG, "WeekInfoData fetched");
             mAdapter = new SectionedRecyclerViewAdapter();
 
-            mAdapter.addSection(new DaySection(getString(R.string.monday), wid.getMonday()));
-            mAdapter.addSection(new DaySection(getString(R.string.tuesday), wid.getTuesday()));
-            mAdapter.addSection(new DaySection(getString(R.string.wednesday), wid.getWednesday()));
-            mAdapter.addSection(new DaySection(getString(R.string.thursday), wid.getThursday()));
-            mAdapter.addSection(new DaySection(getString(R.string.friday), wid.getFriday()));
-            mAdapter.addSection(new DaySection(getString(R.string.saturday), wid.getSaturday()));
-            mAdapter.addSection(new DaySection(getString(R.string.sunday), wid.getSunday()));
-            mAdapter.addSection(new DaySection(getString(R.string.next_monday), wid.getNextmonday()));
-            mAdapter.addSection(new DaySection(getString(R.string.next_tuesday), wid.getNexttuesday()));
-            mAdapter.addSection(new DaySection(getString(R.string.next_wednesday), wid.getNextwednesday()));
-            mAdapter.addSection(new DaySection(getString(R.string.next_thursday), wid.getNextthursday()));
-            mAdapter.addSection(new DaySection(getString(R.string.next_friday), wid.getNextfriday()));
-            mAdapter.addSection(new DaySection(getString(R.string.next_saturday), wid.getNextsaturday()));
-            mAdapter.addSection(new DaySection(getString(R.string.next_sunday), wid.getNextsunday()));
+            mAdapter.addSection(new DaySection(getString(R.string.monday), wid.getMonday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.tuesday), wid.getTuesday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.wednesday), wid.getWednesday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.thursday), wid.getThursday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.friday), wid.getFriday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.saturday), wid.getSaturday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.sunday), wid.getSunday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.next_monday), wid.getNextmonday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.next_tuesday), wid.getNexttuesday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.next_wednesday), wid.getNextwednesday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.next_thursday), wid.getNextthursday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.next_friday), wid.getNextfriday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.next_saturday), wid.getNextsaturday(), this));
+            mAdapter.addSection(new DaySection(getString(R.string.next_sunday), wid.getNextsunday(), this));
             mRecyclerView.setAdapter(mAdapter);
         }
     }
