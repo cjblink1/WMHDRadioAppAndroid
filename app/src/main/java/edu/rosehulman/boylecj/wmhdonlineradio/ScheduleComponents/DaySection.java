@@ -61,25 +61,16 @@ public class DaySection extends StatelessSection {
                 Log.d(Constants.TAG, "long press");
                 Date startTime = UpdateTimer.sdfNow.parse(shows[position].getStart_timestamp() + Constants.STATION_TIME_OFFSET, new ParsePosition(0));
                 Date nowTime = new Date();
+                final Context context = mFragment.getActivity();
+
                 if (startTime.before(nowTime)) {
+                    pastEventDialog(context);
                     return true;
                 }
 
-                final Context context = mFragment.getActivity();
+                confirmEventDialog(position, context);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        confirmEventDialog(position, context);
-                    }
-                });
 
-                builder.setNegativeButton(android.R.string.no, null);
-
-                builder.setTitle(context.getString(R.string.event_dialog_title));
-
-                builder.create().show();
                 return true;
             }
         });
@@ -97,18 +88,40 @@ public class DaySection extends StatelessSection {
         headerHolder.mSectionName.setText(this.sectionName);
     }
 
-    public void confirmEventDialog(int position, Context context) {
-        Date startTime = UpdateTimer.sdfNow.parse(shows[position].getStart_timestamp() + Constants.STATION_TIME_OFFSET, new ParsePosition(0));
-        Date endTime = UpdateTimer.sdfNow.parse(shows[position].getEnd_timestamp() + Constants.STATION_TIME_OFFSET, new ParsePosition(0));
-        Intent intent = new Intent(Intent.ACTION_EDIT);
-        intent.setType("vnd.android.cursor.item/event");
-        intent.putExtra(CalendarContract.Events.TITLE, shows[position].getName());
-        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-                startTime.getTime());
-        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
-                endTime.getTime());
-        intent.putExtra(CalendarContract.Events.ALL_DAY, false);
-        context.startActivity(intent);
+    public void pastEventDialog(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setNeutralButton(android.R.string.ok, null);
+
+        builder.setTitle(context.getString(R.string.past_event_dialog_title));
+
+        builder.create().show();
+    }
+
+    public void confirmEventDialog(final int position, final Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Date startTime = UpdateTimer.sdfNow.parse(shows[position].getStart_timestamp() + Constants.STATION_TIME_OFFSET, new ParsePosition(0));
+                Date endTime = UpdateTimer.sdfNow.parse(shows[position].getEnd_timestamp() + Constants.STATION_TIME_OFFSET, new ParsePosition(0));
+                Intent intent = new Intent(Intent.ACTION_EDIT);
+                intent.setType("vnd.android.cursor.item/event");
+                intent.putExtra(CalendarContract.Events.TITLE, shows[position].getName());
+                intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                        startTime.getTime());
+                intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+                        endTime.getTime());
+                intent.putExtra(CalendarContract.Events.ALL_DAY, false);
+                context.startActivity(intent);
+            }
+        });
+
+        builder.setNegativeButton(android.R.string.no, null);
+
+        builder.setTitle(context.getString(R.string.event_dialog_title));
+
+        builder.create().show();
+
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder{
