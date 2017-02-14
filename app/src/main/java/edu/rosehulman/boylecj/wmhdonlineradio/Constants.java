@@ -10,4 +10,6 @@ public class Constants {
     public static final String WEEK_INFO_URL = "http://dj.wmhdradio.org/api/week-info";
     public static final String TAG = "WMHD";
     public static final String URL_TO_SHARE = "WHMD.url";
+    public static final String STATION_TIME_ZONE = "EST";
+    public static final String STATION_TIME_OFFSET = " -0500";
 }
