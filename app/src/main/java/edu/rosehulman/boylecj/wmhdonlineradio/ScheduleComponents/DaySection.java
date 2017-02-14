@@ -107,7 +107,7 @@ public class DaySection extends StatelessSection {
                 startTime.getTime());
         intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
                 endTime.getTime());
-        intent.putExtra(CalendarContract.Events.ALL_DAY, false);// periodicity
+        intent.putExtra(CalendarContract.Events.ALL_DAY, false);
         context.startActivity(intent);
     }
 
