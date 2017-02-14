@@ -28,13 +28,13 @@ public class ScheduleUtils {
         cal.setTime(timeStart);
 
         StringBuilder sb = new StringBuilder();
-        SimpleDateFormat df = new SimpleDateFormat("h:mm z", Locale.ENGLISH);
+        SimpleDateFormat df = new SimpleDateFormat("h:mm aa z", Locale.ENGLISH);
         sb.append(df.format(cal.getTime()));
 
-        if (TimeZone.getDefault().getRawOffset() != TimeZone.getTimeZone("America/Indiana/Indianapolis").getRawOffset())
+        if (TimeZone.getDefault().getRawOffset() != TimeZone.getTimeZone(Constants.STATION_TIME_NAME).getRawOffset())
         {
             df.setTimeZone(TimeZone.getDefault());
-            df.setTimeZone(TimeZone.getTimeZone("America/Indiana/Indianapolis"));
+            df.setTimeZone(TimeZone.getTimeZone(Constants.STATION_TIME_NAME));
             sb.append(" ("+df.format(cal.getTime())+")");
         }
 
