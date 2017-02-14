@@ -12,4 +12,5 @@ public class Constants {
     public static final String URL_TO_SHARE = "WHMD.url";
     public static final String STATION_TIME_ZONE = "EST";
     public static final String STATION_TIME_OFFSET = " -0500";
+    public static final String STATION_TIME_NAME = "America/Indiana/Indianapolis";
 }
