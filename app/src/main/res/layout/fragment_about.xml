@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/aboutText"
+            android:textSize="18sp"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:textColor="@color/colorTextLight"/>
