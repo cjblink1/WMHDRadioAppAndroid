@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/song_title"
                 android:text="@string/default_song"
+                android:maxLines="1"
                 android:textSize="20sp"/>
 
             <TextView
