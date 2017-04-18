@@ -42,7 +42,8 @@ public class UpdateTimer extends TimerTask implements GetStreamData.DataDisplaye
             UpdateTimer task = new UpdateTimer(mActivity);
             Log.d(Constants.TAG, "Testing " + data.getSchedulerTime());
             Date timeEnd = sdfEnd.parse(data.getCurrent().getEnds() + " -0000", new ParsePosition(0));
-            Date timeNow = sdfNow.parse(data.getSchedulerTime() + Constants.STATION_TIME_OFFSET, new ParsePosition(0));
+            //Date timeNow = sdfNow.parse(data.getSchedulerTime() + Constants.STATION_TIME_OFFSET, new ParsePosition(0));
+            Date timeNow = new Date();
             if (timeEnd == null) {
                 Log.e(Constants.TAG, "Could not fetch or parse end time");
                 mActivity.onDataLoaded(data);
@@ -53,7 +54,10 @@ public class UpdateTimer extends TimerTask implements GetStreamData.DataDisplaye
                 return;
             }
             Log.d("WMHD", timeEnd.getTime() + " " + timeNow.getTime());
-            timer.schedule(task, timeEnd.getTime() - timeNow.getTime() + 10000);
+            long delay = timeEnd.getTime() - timeNow.getTime() + 10000;
+            if (delay > 0) {
+                timer.schedule(task, delay);
+            }
             mActivity.onDataLoaded(data);
         } else {
             Log.d(Constants.TAG, "Data is null");
